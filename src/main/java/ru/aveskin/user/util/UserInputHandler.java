@@ -4,6 +4,10 @@ import ru.aveskin.buget.controller.BudgetController;
 import ru.aveskin.buget.controller.impl.BudgetControllerImpl;
 import ru.aveskin.goal.controller.GoalController;
 import ru.aveskin.goal.controller.impl.GoalControllerImpl;
+import ru.aveskin.notification.controller.NotificationController;
+import ru.aveskin.notification.controller.impl.NotificationControllerImpl;
+import ru.aveskin.statistic.controller.StatisticsController;
+import ru.aveskin.statistic.controller.impl.StatisticsControllerImpl;
 import ru.aveskin.transaction.controller.TransactionController;
 import ru.aveskin.transaction.controller.impl.TransactionControllerImpl;
 import ru.aveskin.user.admin.controller.AdminController;
@@ -20,6 +24,8 @@ public class UserInputHandler {
     private static final TransactionController transactionController = new TransactionControllerImpl();
     private static final BudgetController budgetController = new BudgetControllerImpl();
     private static final GoalController goalController = new GoalControllerImpl();
+    private static final NotificationController notificationController = new NotificationControllerImpl();
+    private static final StatisticsController statisticsController = new StatisticsControllerImpl();
 
 
     public static void viewProfile(User user) {
@@ -32,6 +38,8 @@ public class UserInputHandler {
         System.out.println("\nИзменение данных профиля:");
         String newName = ProgramInputHandler.getString("Введите новое имя: ");
         user.setName(newName);
+        String newPass = ProgramInputHandler.getString("Введите новый пароль: ");
+        user.setPassword(newPass);
         userController.changeUser(user);
     }
 
@@ -62,5 +70,13 @@ public class UserInputHandler {
 
     public static void deleteUser() {
         adminController.delete();
+    }
+
+    public static void viewNotifications(User user) {
+        notificationController.showNotifications(user);
+    }
+
+    public static void statisticsMenu(User user) {
+        statisticsController.statisticsMenu(user);
     }
 }

@@ -4,6 +4,8 @@ import ru.aveskin.goal.model.Goal;
 import ru.aveskin.goal.repository.GoalRepository;
 import ru.aveskin.goal.repository.impl.GoalRepositoryImpl;
 import ru.aveskin.goal.service.GoalService;
+import ru.aveskin.notification.service.NotificationService;
+import ru.aveskin.notification.service.impl.NotificationServiceImpl;
 import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 public class GoalServiceImpl implements GoalService {
     private final GoalRepository goalRepository = new GoalRepositoryImpl();
+    private final NotificationService notificationService = new NotificationServiceImpl();
 
     @Override
     public void createGoal(User user) {
@@ -60,9 +63,14 @@ public class GoalServiceImpl implements GoalService {
             goal.addSavings(amount);
             goalRepository.save(user, goal);
             System.out.println("Добавлено " + amount + " к цели '" + goal.getName() + "'");
+
+            if (goal.isGoalReached()) {
+                String message = "ВНИМАНИЕ: Вы достигли цели" + goal.getName();
+                notificationService.notifyUser(user, message, true);
+            }
+
         } else {
             System.out.println("Неверный выбор цели.");
-            return;
         }
     }
 }
