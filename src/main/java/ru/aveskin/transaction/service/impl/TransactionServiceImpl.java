@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class TransactionServiceImpl implements TransactionService {
-    TransactionRepository transactionRepository = new TransactionRepositoryImpl();
+    TransactionRepository transactionRepository;
+
+    public TransactionServiceImpl(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
 
     @Override
     public void add(User user) {

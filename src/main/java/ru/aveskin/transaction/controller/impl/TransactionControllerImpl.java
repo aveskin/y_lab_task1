@@ -9,8 +9,13 @@ import ru.aveskin.user.service.impl.UserServiceImpl;
 import ru.aveskin.util.ProgramInputHandler;
 
 public class TransactionControllerImpl implements TransactionController {
-    private final TransactionService transactionService = new TransactionServiceImpl();
-    private final UserService userService = new UserServiceImpl();
+    private final TransactionService transactionService;
+    private final UserService userService;
+
+    public TransactionControllerImpl(TransactionService transactionService, UserService userService) {
+        this.transactionService = transactionService;
+        this.userService = userService;
+    }
 
     @Override
     public void transactionMenu(User user) {

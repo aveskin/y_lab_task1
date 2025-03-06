@@ -4,14 +4,17 @@ import ru.aveskin.user.dto.UserLoginDto;
 import ru.aveskin.user.dto.UserRegisterDto;
 import ru.aveskin.user.model.User;
 import ru.aveskin.user.repository.UserRepository;
-import ru.aveskin.user.repository.impl.UserRepositoryImpl;
 import ru.aveskin.user.service.UserService;
 import ru.aveskin.util.ProgramInputHandler;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserRepository userRepository = new UserRepositoryImpl();
+    UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public boolean register(UserRegisterDto userRegisterDto) {

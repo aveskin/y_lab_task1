@@ -6,7 +6,11 @@ import ru.aveskin.notification.service.impl.NotificationServiceImpl;
 import ru.aveskin.user.model.User;
 
 public class NotificationControllerImpl implements NotificationController {
-    private final NotificationService notificationService = new NotificationServiceImpl();
+    private final NotificationService notificationService;
+
+    public NotificationControllerImpl(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
     @Override
     public void showNotifications(User user) {

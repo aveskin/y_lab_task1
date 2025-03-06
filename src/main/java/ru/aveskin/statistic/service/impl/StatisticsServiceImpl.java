@@ -11,7 +11,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StatisticsServiceImpl implements StatisticsService {
-    private final TransactionRepository transactionRepository = new TransactionRepositoryImpl();
+    private final TransactionRepository transactionRepository;
+
+    public StatisticsServiceImpl(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
 
     @Override
     public double getCurrentBalance(String email) {

@@ -9,7 +9,11 @@ import ru.aveskin.user.model.User;
 import java.util.List;
 
 public class NotificationServiceImpl implements NotificationService {
-    private final NotificationRepository notificationRepository = new NotificationRepositoryImpl();
+    private final NotificationRepository notificationRepository;
+
+    public NotificationServiceImpl(NotificationRepository notificationRepository) {
+        this.notificationRepository = notificationRepository;
+    }
 
     @Override
     public void showNotifications(User user) {

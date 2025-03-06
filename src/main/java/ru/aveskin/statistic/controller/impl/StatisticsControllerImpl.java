@@ -9,7 +9,11 @@ import ru.aveskin.util.ProgramInputHandler;
 import java.util.Map;
 
 public class StatisticsControllerImpl implements StatisticsController {
-    private final StatisticsService statisticsService = new StatisticsServiceImpl();
+    private final StatisticsService statisticsService;
+
+    public StatisticsControllerImpl(StatisticsService statisticsService) {
+        this.statisticsService = statisticsService;
+    }
 
     @Override
     public void statisticsMenu(User user) {

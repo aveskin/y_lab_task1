@@ -6,7 +6,11 @@ import ru.aveskin.user.service.UserService;
 import ru.aveskin.user.service.impl.UserServiceImpl;
 
 public class AdminControllerImpl implements AdminController {
-    private final UserService userService = new UserServiceImpl();
+    private final UserService userService;
+
+    public AdminControllerImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public void delete() {

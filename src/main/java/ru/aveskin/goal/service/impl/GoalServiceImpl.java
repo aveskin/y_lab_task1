@@ -13,8 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class GoalServiceImpl implements GoalService {
-    private final GoalRepository goalRepository = new GoalRepositoryImpl();
-    private final NotificationService notificationService = new NotificationServiceImpl();
+    private final GoalRepository goalRepository;
+    private final NotificationService notificationService;
+
+    public GoalServiceImpl(GoalRepository goalRepository, NotificationService notificationService) {
+        this.goalRepository = goalRepository;
+        this.notificationService = notificationService;
+    }
 
     @Override
     public void createGoal(User user) {

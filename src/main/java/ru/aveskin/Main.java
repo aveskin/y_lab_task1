@@ -1,19 +1,54 @@
 package ru.aveskin;
 
+import ru.aveskin.buget.controller.BudgetController;
+import ru.aveskin.goal.controller.GoalController;
+import ru.aveskin.notification.controller.NotificationController;
+import ru.aveskin.statistic.controller.StatisticsController;
+import ru.aveskin.transaction.controller.TransactionController;
+import ru.aveskin.user.admin.controller.AdminController;
+import ru.aveskin.user.controller.UserController;
 import ru.aveskin.user.model.User;
 import ru.aveskin.user.util.UserInputHandler;
 import ru.aveskin.util.ProgramInputHandler;
+import ru.aveskin.util.factory.ControllerFactory;
+import ru.aveskin.util.factory.RepositoryFactory;
+import ru.aveskin.util.factory.ServiceFactory;
 
 
 public class Main {
     public static void main(String[] args) {
+
+        RepositoryFactory repositoryFactory = new RepositoryFactory();
+        ServiceFactory serviceFactory = new ServiceFactory(repositoryFactory);
+        ControllerFactory controllerFactory = new ControllerFactory(serviceFactory);
+
+        UserController userController = controllerFactory.createUserController();
+        AdminController adminController = controllerFactory.createAdminController();
+        TransactionController transactionController = controllerFactory.createTransactionController();
+        BudgetController budgetController = controllerFactory.createBudgetController();
+        GoalController goalController = controllerFactory.createGoalController();
+        NotificationController notificationController = controllerFactory.createNotificationController();
+        StatisticsController statisticsController = controllerFactory.createStatisticsController();
+
+
+        UserInputHandler userInputHandler = new UserInputHandler(
+                userController,
+                adminController,
+                transactionController,
+                budgetController,
+                goalController,
+                notificationController,
+                statisticsController
+        );
+
+
         User currentUser = null;
 
         while (true) {
             if (currentUser == null) {
                 currentUser = showLoginMenu();
             } else {
-                currentUser = showUserMenu(currentUser);
+                currentUser = showUserMenu(currentUser, userInputHandler);
             }
         }
 
@@ -43,7 +78,7 @@ public class Main {
         return null;
     }
 
-    private static User showUserMenu(User currentUser) {
+    private static User showUserMenu(User currentUser, UserInputHandler userInputHandler) {
         System.out.println("\nДобро пожаловать, " + currentUser.getName());
         System.out.println("1. Просмотреть профиль");
         System.out.println("2. Изменить профиль");
@@ -59,30 +94,32 @@ public class Main {
         System.out.println("99. Выйти из аккаунта");
 
         int choice = ProgramInputHandler.getChoice();
+
+
         switch (choice) {
-            case 1 -> UserInputHandler.viewProfile(currentUser);
-            case 2 -> UserInputHandler.updateProfile(currentUser);
+            case 1 -> userInputHandler.viewProfile(currentUser);
+            case 2 -> userInputHandler.updateProfile(currentUser);
             case 3 -> {
-                UserInputHandler.deleteProfile(currentUser);
+                userInputHandler.deleteProfile(currentUser);
                 return null; // Выход в главное меню
             }
-            case 4 -> UserInputHandler.transactionMenu(currentUser);
-            case 5 -> UserInputHandler.goalMenu(currentUser);
-            case 6 -> UserInputHandler.budgetMenu(currentUser);
-            case 7 -> UserInputHandler.viewNotifications(currentUser);
+            case 4 -> userInputHandler.transactionMenu(currentUser);
+            case 5 -> userInputHandler.goalMenu(currentUser);
+            case 6 -> userInputHandler.budgetMenu(currentUser);
+            case 7 -> userInputHandler.viewNotifications(currentUser);
             case 8 -> {
-                if (currentUser.isAdmin()) UserInputHandler.viewUserList();
+                if (currentUser.isAdmin()) userInputHandler.viewUserList();
                 else System.out.println("Недостаточно прав!");
             }
             case 9 -> {
-                if (currentUser.isAdmin()) UserInputHandler.viewUserTransactionList();
+                if (currentUser.isAdmin()) userInputHandler.viewUserTransactionList();
                 else System.out.println("Недостаточно прав!");
             }
             case 10 -> {
-                if (currentUser.isAdmin()) UserInputHandler.deleteUser();
+                if (currentUser.isAdmin()) userInputHandler.deleteUser();
                 else System.out.println("Недостаточно прав!");
             }
-            case 11 -> UserInputHandler.statisticsMenu(currentUser);
+            case 11 -> userInputHandler.statisticsMenu(currentUser);
 
             case 99 -> {
                 System.out.println("Выход из аккаунта...");

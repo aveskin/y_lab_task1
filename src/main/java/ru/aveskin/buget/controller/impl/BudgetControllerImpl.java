@@ -7,7 +7,11 @@ import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 
 public class BudgetControllerImpl implements BudgetController {
-    private final BudgetService budgetService = new BudgetServiceImpl();
+    private final BudgetService budgetService;
+
+    public BudgetControllerImpl(BudgetService budgetService) {
+        this.budgetService = budgetService;
+    }
 
     @Override
     public void budgetMenu(User user) {

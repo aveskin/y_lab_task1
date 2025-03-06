@@ -7,8 +7,11 @@ import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 
 public class GoalControllerImpl implements GoalController {
-    private final GoalService goalService = new GoalServiceImpl();
+    private final GoalService goalService;
 
+    public GoalControllerImpl(GoalService goalService) {
+        this.goalService = goalService;
+    }
 
     @Override
     public void goalMenu(User user) {

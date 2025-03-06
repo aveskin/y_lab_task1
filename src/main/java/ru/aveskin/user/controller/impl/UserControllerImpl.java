@@ -8,7 +8,11 @@ import ru.aveskin.user.service.UserService;
 import ru.aveskin.user.service.impl.UserServiceImpl;
 
 public class UserControllerImpl implements UserController {
-    private final UserService userService = new UserServiceImpl();
+    private final UserService userService;
+
+    public UserControllerImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean register(UserRegisterDto userRegisterDto) {

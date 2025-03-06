@@ -10,8 +10,13 @@ import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 
 public class BudgetServiceImpl implements BudgetService {
-    private final BudgetRepository budgetRepository = new BudgetRepositoryImpl();
-    private final NotificationService notificationService = new NotificationServiceImpl();
+    private final BudgetRepository budgetRepository;
+    private final NotificationService notificationService;
+
+    public BudgetServiceImpl(BudgetRepository budgetRepository, NotificationService notificationService) {
+        this.budgetRepository = budgetRepository;
+        this.notificationService = notificationService;
+    }
 
     @Override
     public void setBudget(User user) {
