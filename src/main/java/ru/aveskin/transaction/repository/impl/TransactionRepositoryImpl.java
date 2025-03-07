@@ -20,7 +20,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public List<Transaction> getTransactionsList(String email) {
-        return usersTransactions.get(email);
+        return usersTransactions.getOrDefault(email, new ArrayList<>());
     }
 
     @Override

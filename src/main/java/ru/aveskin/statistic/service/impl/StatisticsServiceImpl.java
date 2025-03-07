@@ -4,7 +4,6 @@ import ru.aveskin.statistic.service.StatisticsService;
 import ru.aveskin.transaction.model.Transaction;
 import ru.aveskin.transaction.model.TransactionType;
 import ru.aveskin.transaction.repository.TransactionRepository;
-import ru.aveskin.transaction.repository.impl.TransactionRepositoryImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,6 @@ public class StatisticsServiceImpl implements StatisticsService {
         this.transactionRepository = transactionRepository;
     }
 
-    @Override
     public double getCurrentBalance(String email) {
         List<Transaction> transactions = transactionRepository.getTransactionsList(email);
         return transactions.stream()

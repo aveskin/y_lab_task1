@@ -2,7 +2,6 @@ package ru.aveskin.goal.controller.impl;
 
 import ru.aveskin.goal.controller.GoalController;
 import ru.aveskin.goal.service.GoalService;
-import ru.aveskin.goal.service.impl.GoalServiceImpl;
 import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 

@@ -41,12 +41,14 @@ public class Main {
                 statisticsController
         );
 
+        ProgramInputHandler programInputHandler = new ProgramInputHandler(userController);
+
 
         User currentUser = null;
 
         while (true) {
             if (currentUser == null) {
-                currentUser = showLoginMenu();
+                currentUser = showLoginMenu(programInputHandler);
             } else {
                 currentUser = showUserMenu(currentUser, userInputHandler);
             }
@@ -54,7 +56,7 @@ public class Main {
 
     }
 
-    private static User showLoginMenu() {
+    private static User showLoginMenu(ProgramInputHandler programInputHandler) {
         System.out.println("\nЛичный финансовый трекер");
         System.out.println("1. Регистрация");
         System.out.println("2. Вход");
@@ -62,9 +64,9 @@ public class Main {
 
         int choice = ProgramInputHandler.getChoice();
         switch (choice) {
-            case 1 -> ProgramInputHandler.register();
+            case 1 -> programInputHandler.register();
             case 2 -> {
-                User user = ProgramInputHandler.login();
+                User user = programInputHandler.login();
                 if (user != null) {
                     return user;
                 }

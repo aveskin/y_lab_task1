@@ -2,10 +2,8 @@ package ru.aveskin.buget.service.impl;
 
 import ru.aveskin.buget.model.Budget;
 import ru.aveskin.buget.repository.BudgetRepository;
-import ru.aveskin.buget.repository.impl.BudgetRepositoryImpl;
 import ru.aveskin.buget.service.BudgetService;
 import ru.aveskin.notification.service.NotificationService;
-import ru.aveskin.notification.service.impl.NotificationServiceImpl;
 import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 

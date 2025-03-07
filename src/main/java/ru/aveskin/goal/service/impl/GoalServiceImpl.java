@@ -2,10 +2,8 @@ package ru.aveskin.goal.service.impl;
 
 import ru.aveskin.goal.model.Goal;
 import ru.aveskin.goal.repository.GoalRepository;
-import ru.aveskin.goal.repository.impl.GoalRepositoryImpl;
 import ru.aveskin.goal.service.GoalService;
 import ru.aveskin.notification.service.NotificationService;
-import ru.aveskin.notification.service.impl.NotificationServiceImpl;
 import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 

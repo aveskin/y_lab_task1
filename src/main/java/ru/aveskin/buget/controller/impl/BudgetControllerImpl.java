@@ -2,7 +2,6 @@ package ru.aveskin.buget.controller.impl;
 
 import ru.aveskin.buget.controller.BudgetController;
 import ru.aveskin.buget.service.BudgetService;
-import ru.aveskin.buget.service.impl.BudgetServiceImpl;
 import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;
 

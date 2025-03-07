@@ -3,7 +3,6 @@ package ru.aveskin.transaction.service.impl;
 import ru.aveskin.transaction.model.Transaction;
 import ru.aveskin.transaction.model.TransactionType;
 import ru.aveskin.transaction.repository.TransactionRepository;
-import ru.aveskin.transaction.repository.impl.TransactionRepositoryImpl;
 import ru.aveskin.transaction.service.TransactionService;
 import ru.aveskin.user.model.User;
 import ru.aveskin.util.ProgramInputHandler;

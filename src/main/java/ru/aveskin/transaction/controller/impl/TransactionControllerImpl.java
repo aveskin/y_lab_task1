@@ -2,10 +2,8 @@ package ru.aveskin.transaction.controller.impl;
 
 import ru.aveskin.transaction.controller.TransactionController;
 import ru.aveskin.transaction.service.TransactionService;
-import ru.aveskin.transaction.service.impl.TransactionServiceImpl;
 import ru.aveskin.user.model.User;
 import ru.aveskin.user.service.UserService;
-import ru.aveskin.user.service.impl.UserServiceImpl;
 import ru.aveskin.util.ProgramInputHandler;
 
 public class TransactionControllerImpl implements TransactionController {

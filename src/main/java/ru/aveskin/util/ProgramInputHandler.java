@@ -1,7 +1,6 @@
 package ru.aveskin.util;
 
 import ru.aveskin.user.controller.UserController;
-import ru.aveskin.user.controller.impl.UserControllerImpl;
 import ru.aveskin.user.dto.UserLoginDto;
 import ru.aveskin.user.dto.UserRegisterDto;
 import ru.aveskin.user.model.User;
@@ -9,8 +8,12 @@ import ru.aveskin.user.model.User;
 import java.util.Scanner;
 
 public class ProgramInputHandler {
-    private static final UserController userController = new UserControllerImpl();
-    private static final Scanner scanner = new Scanner(System.in);
+    private final UserController userController;
+    private final static Scanner scanner = new Scanner(System.in);
+
+    public ProgramInputHandler(UserController userController) {
+        this.userController = userController;
+    }
 
     public static int getChoice() {
         while (true) {
@@ -29,10 +32,11 @@ public class ProgramInputHandler {
     }
 
     public static double getDouble(String prompt) {
+        System.out.print(prompt);
         return Double.parseDouble(scanner.nextLine());
     }
 
-    public static void register() {
+    public void register() {
         String name = ProgramInputHandler.getString("Введите имя: ");
         String email = ProgramInputHandler.getString("Введите email: ");
         String password = ProgramInputHandler.getString("Введите пароль: ");
@@ -45,7 +49,7 @@ public class ProgramInputHandler {
         }
     }
 
-    public static User login() {
+    public User login() {
         String email = ProgramInputHandler.getString("Введите email: ");
         String password = ProgramInputHandler.getString("Введите пароль: ");
         User loginedUser = userController.login(new UserLoginDto(email, password));

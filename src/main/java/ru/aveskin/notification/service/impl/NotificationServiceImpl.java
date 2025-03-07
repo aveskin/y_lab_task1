@@ -2,7 +2,6 @@ package ru.aveskin.notification.service.impl;
 
 import ru.aveskin.notification.model.Notification;
 import ru.aveskin.notification.repository.NotificationRepository;
-import ru.aveskin.notification.repository.impl.NotificationRepositoryImpl;
 import ru.aveskin.notification.service.NotificationService;
 import ru.aveskin.user.model.User;
 
@@ -38,6 +37,6 @@ public class NotificationServiceImpl implements NotificationService {
     private void sendEmailNotification(String email, String message) {
         // Имитация отправки на Email
         //sendEmail()
-        System.out.println("📧 Email отправлен на " + email + ": " + message);
+        System.out.println("Email отправлен на " + email + ": " + message);
     }
 }
